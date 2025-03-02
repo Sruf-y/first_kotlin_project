@@ -103,7 +103,6 @@ open class alarme : Fragment(R.layout.fragment_alarme),alarmAdapter.OnSwitchList
 
         //defaults
         doingselection=0
-        recycleview.adapter?.notifyDataSetChanged()
         for(i in 0..<alarmDataList.size)
         {
             alarmDataList[i].editChecker=false

@@ -73,6 +73,7 @@ class alarmAdapter(val mList:List<alarmViewModel>,val listener: OnSwitchListener
         val Duminica:MaterialCheckBox=itemView.findViewById(R.id.smallDuminica)
         val days:LinearLayout=itemView.findViewById(R.id.days)
         val isTimed:ImageView=itemView.findViewById(R.id.istimed)
+        val weekly_card:LinearLayout=itemView.findViewById(R.id.days)
 
 
     }
@@ -136,8 +137,9 @@ class alarmAdapter(val mList:List<alarmViewModel>,val listener: OnSwitchListener
                 holder.title.layoutParams?.height=ViewGroup.LayoutParams.WRAP_CONTENT
             }
 
-            if(mList[position].type[0]%10!=1)
+            if(mList[position].type[0]%10==2)
             {
+
                 holder.Luni.isChecked=mList[position].type[1].toBool()
                 holder.Marti.isChecked=mList[position].type[2].toBool()
                 holder.Miercuri.isChecked=mList[position].type[3].toBool()
@@ -145,6 +147,15 @@ class alarmAdapter(val mList:List<alarmViewModel>,val listener: OnSwitchListener
                 holder.Vineri.isChecked=mList[position].type[5].toBool()
                 holder.Sambata.isChecked=mList[position].type[6].toBool()
                 holder.Duminica.isChecked=mList[position].type[7].toBool()
+            }
+            else{
+                holder.Luni.isChecked=false
+                holder.Marti.isChecked=false
+                holder.Miercuri.isChecked=false
+                holder.Joi.isChecked=false
+                holder.Vineri.isChecked=false
+                holder.Sambata.isChecked=false
+                holder.Duminica.isChecked=false
             }
 
             if(mList[position].type[0]>10)
@@ -191,6 +202,8 @@ class alarmAdapter(val mList:List<alarmViewModel>,val listener: OnSwitchListener
                     holder.title.translationX=0.dP.toFloat()
                     holder.am.translationX=0.dP.toFloat()
                     holder.days.translationX=0.dP.toFloat()
+
+
                 }
                 1->{
                     holder.timp.animate()
@@ -230,6 +243,8 @@ class alarmAdapter(val mList:List<alarmViewModel>,val listener: OnSwitchListener
                         .translationX(55.dP.toFloat())
                         .apply {}
                         .start()
+
+
                 }
                 2->{
                     holder.timp.animate()
@@ -277,6 +292,8 @@ class alarmAdapter(val mList:List<alarmViewModel>,val listener: OnSwitchListener
                     mList[position].editChecker=false
                     holder.mySelector.isChecked=false
 
+
+
                 }
             }
 
@@ -321,6 +338,17 @@ class alarmAdapter(val mList:List<alarmViewModel>,val listener: OnSwitchListener
 
     }
 
+    override fun onViewRecycled(holder: RecyclerView.ViewHolder) {
+        super.onViewRecycled(holder)
+
+        holder.itemView.findViewById<CheckBox>(R.id.smallLuni).setOnCheckedChangeListener(null)
+        holder.itemView.findViewById<CheckBox>(R.id.smallMarti).setOnCheckedChangeListener(null)
+        holder.itemView.findViewById<CheckBox>(R.id.smallMiercuri).setOnCheckedChangeListener(null)
+        holder.itemView.findViewById<CheckBox>(R.id.smallJoi).setOnCheckedChangeListener(null)
+        holder.itemView.findViewById<CheckBox>(R.id.smallVineri).setOnCheckedChangeListener(null)
+        holder.itemView.findViewById<CheckBox>(R.id.smallSambata).setOnCheckedChangeListener(null)
+        holder.itemView.findViewById<CheckBox>(R.id.smallDuminica).setOnCheckedChangeListener(null)
+    }
 
     override fun getItemCount(): Int {
         return mList.size
