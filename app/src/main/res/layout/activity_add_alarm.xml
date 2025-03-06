@@ -22,7 +22,7 @@
         <NumberPicker
             android:id="@+id/numberPicker"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="290dp"
             android:layout_weight="1"
             android:selectionDividerHeight="0dp"
             android:theme="@style/NumberPickerStyle" />
@@ -30,7 +30,7 @@
         <NumberPicker
             android:id="@+id/numberPicker2"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="290dp"
             android:layout_weight="1"
             android:selectionDividerHeight="0dp"
             android:theme="@style/NumberPickerStyle" />
@@ -38,7 +38,7 @@
         <NumberPicker
             android:id="@+id/numberPicker3"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="290dp"
             android:layout_weight="1"
             android:descendantFocusability="blocksDescendants"
             android:selectionDividerHeight="0dp"
@@ -46,6 +46,7 @@
     </LinearLayout>
 
     <ScrollView
+        android:id="@+id/stuff_scroll_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/liftedBackgrounds"
@@ -210,21 +211,6 @@
         </LinearLayout>
     </ScrollView>
 
-    <View
-        android:id="@+id/overlayAbove"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:clickable="false"
-        android:foreground="@drawable/overlay"
-        android:foregroundGravity="center|fill"
-        android:foregroundTint="@color/backgrounds"
-        app:layout_constraintBottom_toTopOf="@+id/whereButtonsAre"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chooseStuff"
-        app:layout_constraintVertical_bias="0.54"
-        tools:visibility="gone" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/calend_back"
         android:layout_width="match_parent"
@@ -254,7 +240,7 @@
     <LinearLayout
         android:id="@+id/whereButtonsAre"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="60.dp"
         android:gravity="fill"
         android:orientation="horizontal"
         android:weightSum="2"
@@ -290,5 +276,19 @@
             app:layout_constraintBottom_toBottomOf="parent" />
 
     </LinearLayout>
+
+    <View
+        android:id="@+id/overlayAbove"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clickable="false"
+        android:foreground="@drawable/overlay"
+        android:foregroundGravity="center|fill"
+        android:foregroundTint="@color/backgrounds"
+        app:layout_constraintBottom_toTopOf="@+id/whereButtonsAre"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chooseStuff"
+        app:layout_constraintVertical_bias="0.54" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

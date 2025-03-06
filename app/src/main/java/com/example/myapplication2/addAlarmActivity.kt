@@ -1,7 +1,9 @@
 package com.example.myapplication2
 
 
+import android.content.Context
 import android.content.Intent
+import android.graphics.Rect
 import android.icu.util.Calendar
 import android.media.Image
 import android.os.Bundle
@@ -10,17 +12,23 @@ import android.text.Editable
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.CalendarView
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.LinearLayout.LayoutParams
 import android.widget.NumberPicker
+import android.widget.ScrollView
 import android.widget.Switch
 import android.widget.TextView
 import androidx.activity.addCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.runtime.key
 import androidx.compose.ui.graphics.findFirstRoot
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
@@ -67,6 +75,8 @@ class addAlarmActivity : AppCompatActivity() {
 //            insets
 //        }
 
+
+        val wherebuttonsarea = findViewById<LinearLayout>(R.id.whereButtonsAre)
         cancelButton=findViewById(R.id.button3)
         saveButton=findViewById(R.id.button5)
         hourPicker=findViewById(R.id.numberPicker)
@@ -235,8 +245,10 @@ class addAlarmActivity : AppCompatActivity() {
             }
 
 
-
-            newAllarm.properties[0]=textedit.text.toString()
+            if(textedit.text.toString().isNotBlank())
+                newAllarm.properties[0]=textedit.text.toString()
+            else
+                newAllarm.properties[0]=""
             checkZileleSaptamanii()
             newAllarm.SoundTime=assign_time(newAllarm,is_delayed.isChecked,true)
 
@@ -324,8 +336,12 @@ class addAlarmActivity : AppCompatActivity() {
 
         }
 
+
+
         onBackPressedDispatcher.addCallback() {
             // Handle the back press
+
+
 
             if (calendar_background.translationY == 0.dP.toFloat()) {
 
@@ -355,6 +371,8 @@ class addAlarmActivity : AppCompatActivity() {
                 finish()
             }
         }
+
+
 
 
 

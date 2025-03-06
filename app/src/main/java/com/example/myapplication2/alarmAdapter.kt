@@ -124,7 +124,7 @@ class alarmAdapter(val mList:List<alarmViewModel>,val listener: OnSwitchListener
             holder.swich.isChecked = itemCard.active
             holder.mySelector.isChecked=itemCard.editChecker
 
-            if(mList[position].properties[0]=="")
+            if(mList[position].properties[0].isBlank())
             {
                 holder.title.layoutParams?.height=1.dP
                 holder.title.visibility=View.INVISIBLE
