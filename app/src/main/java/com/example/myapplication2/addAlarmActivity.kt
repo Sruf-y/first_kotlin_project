@@ -497,7 +497,7 @@ fun ora_am_or_pm(data: alarmViewModel): Int {
         return data.ora+12
 }
 
-fun swipeNumberPicker(button:View){
+fun clickElement(givenview:View){
 
 
 
@@ -506,12 +506,12 @@ fun swipeNumberPicker(button:View){
 
         // Simulate touch down (ACTION_DOWN)
         val downEvent = MotionEvent.obtain(downTime, downTime, MotionEvent.ACTION_DOWN, 0f, 0f, 0)
-        button.dispatchTouchEvent(downEvent) // Dispatch touch down event
+    givenview.dispatchTouchEvent(downEvent) // Dispatch touch down event
 
         // Simulate touch up (ACTION_UP) after a short delay
         val upTime = SystemClock.uptimeMillis()
         val upEvent = MotionEvent.obtain(downTime, upTime, MotionEvent.ACTION_UP, 0f, 0f, 0)
-        button.dispatchTouchEvent(upEvent) // Dispatch touch up event
+    givenview.dispatchTouchEvent(upEvent) // Dispatch touch up event
 
 
 }
