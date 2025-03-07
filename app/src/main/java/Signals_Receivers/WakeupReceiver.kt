@@ -1,8 +1,9 @@
-package com.example.myapplication2
+package Signals_Receivers
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import com.example.myapplication2.setAllarms
 
 class wakeupReceiver : BroadcastReceiver() {
 

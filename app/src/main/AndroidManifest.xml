@@ -27,17 +27,18 @@
         <activity
             android:name=".addAlarmActivity"
             android:screenOrientation="portrait"
+
             android:exported="false" />
 
         <receiver
-            android:name=".wakeupReceiver"
+            android:name="Signals_Receivers.wakeupReceiver"
             android:enabled="false"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".AlarmReceiver" />
+        <receiver android:name="Signals_Receivers.AlarmReceiver" />
 
         <activity
             android:name=".MainActivity"

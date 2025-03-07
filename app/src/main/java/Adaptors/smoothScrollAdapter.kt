@@ -1,4 +1,4 @@
-package com.example.myapplication2 // Update this to match your package name
+package Adaptors // Update this to match your package name
 
 import android.content.Context
 import android.util.AttributeSet

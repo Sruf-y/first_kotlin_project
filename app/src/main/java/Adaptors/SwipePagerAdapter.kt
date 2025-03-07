@@ -1,14 +1,13 @@
-package com.example.myapplication2
+package Adaptors
 
 
 import android.os.Bundle
 import android.view.View
-import android.widget.EditText
-import android.widget.ScrollView
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.myapplication2.alarme
+import com.example.myapplication2.clock_calc
+import com.example.myapplication2.timer
 
 class swipePagerAdapter(fragment:Fragment): FragmentStateAdapter(fragment) {
 
@@ -25,14 +24,14 @@ class swipePagerAdapter(fragment:Fragment): FragmentStateAdapter(fragment) {
         return when(position){
             0-> alarmeFragment() // MusicFragment();
             1-> clock_calc();
-            2->timer() //LyricsFragment();
-            else->alarmeFragment();
+            2-> timer() //LyricsFragment();
+            else-> alarmeFragment();
         }
 
 
     }
 
-class alarmeFragment:alarme() {
+class alarmeFragment: alarme() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

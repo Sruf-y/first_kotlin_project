@@ -1,4 +1,4 @@
-package com.example.myapplication2
+package Signals_Receivers
 
 import android.content.BroadcastReceiver
 import android.content.Context

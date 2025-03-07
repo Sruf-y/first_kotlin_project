@@ -17,18 +17,31 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.Resources
 import android.net.Uri
+import android.os.Build
 import android.provider.Settings
 import android.transition.TransitionInflater
 import android.view.View
+import android.view.Window
+import android.view.WindowInsets
+import android.view.WindowInsetsAnimation
+import android.view.WindowInsetsAnimationController
+import android.view.WindowInsetsController
+import android.view.animation.Animation
 import android.window.OnBackInvokedDispatcher
 import androidx.activity.addCallback
+import androidx.annotation.RequiresApi
+import androidx.appcompat.view.WindowCallbackWrapper
 import androidx.appcompat.widget.Toolbar
+import androidx.compose.ui.util.lerp
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowInsetsAnimationCompat
+import androidx.core.view.WindowInsetsControllerCompat
+import androidx.core.view.setPadding
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
-
-
+import com.google.android.material.math.MathUtils.lerp
+import com.google.android.material.search.SearchView.Behavior
 
 
 @TargetApi(33)
@@ -52,10 +65,13 @@ class MainActivity : AppCompatActivity() {
         //toolBar = findViewById(R.id.myToolbar)
         //setSupportActionBar(toolBar);
 
-
-
-
         navBar = findViewById(R.id.bottomNavigationView);
+
+
+
+        setBarToSwipeUp(window)
+        adjustViewsForKeyboard(navBar);
+
 
 
         navBar.setOnItemSelectedListener { item ->
@@ -180,6 +196,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
     private fun makeCurrentFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.fragmentContainerView2,fragment)
@@ -189,6 +206,38 @@ class MainActivity : AppCompatActivity() {
 
 
 
+}
+
+
+
+
+@RequiresApi(Build.VERSION_CODES.R)
+fun setBarToSwipeUp(window:Window){
+    //val imecontroller = this.window.insetsController
+    //imecontroller?.systemBarsBehavior
+
+    val barscontroller = WindowInsetsControllerCompat(window,window.decorView)
+
+    barscontroller.systemBarsBehavior=WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+
+    barscontroller.hide(WindowInsetsCompat.Type.navigationBars())
+
+    //val notificationbarcontroller=window.insetsController
+    //notificationbarcontroller?.hide(WindowInsetsCompat.Type.statusBars())
+
+
+}
+
+fun adjustViewsForKeyboard(view:View){
+    ViewCompat.setOnApplyWindowInsetsListener(view){v,insets->
+        val imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime());
+
+        val systembarInsets=insets.getInsets(WindowInsetsCompat.Type.systemBars())
+
+        v.setPadding(0,0,0,systembarInsets.bottom)
+
+        insets
+    }
 }
 
 

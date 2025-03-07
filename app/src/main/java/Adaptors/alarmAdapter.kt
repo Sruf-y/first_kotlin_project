@@ -1,10 +1,6 @@
-package com.example.myapplication2
+package Adaptors
 
-import android.content.ClipData.Item
-import android.content.Context
 import android.content.res.Resources
-import android.os.CountDownTimer
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -14,26 +10,18 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Switch
 import android.widget.TextView
-import androidx.appcompat.view.menu.MenuView.ItemView
-import androidx.cardview.widget.CardView
-import androidx.collection.emptyLongSet
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideOut
-import androidx.compose.animation.slideOutHorizontally
-import androidx.compose.runtime.compositionLocalWithComputedDefaultOf
-import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
-import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication2.Utils.Companion.dP
+import Adaptors.Utils.Companion.dP
+import com.example.myapplication2.R
+import Classes_Ojects.alarmViewModel
+import com.example.myapplication2.doingselection
+import com.example.myapplication2.toBool
 import com.google.android.material.checkbox.MaterialCheckBox
-import kotlin.coroutines.coroutineContext
-import kotlin.math.roundToInt
 
 
-class alarmAdapter(val mList:List<alarmViewModel>,val listener: OnSwitchListener,val listener2:onCardClickListener,val listener3:onCardLongPressListener):RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class alarmAdapter(val mList:List<alarmViewModel>, val listener: OnSwitchListener, val listener2: onCardClickListener, val listener3: onCardLongPressListener):RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
 
@@ -175,15 +163,27 @@ class alarmAdapter(val mList:List<alarmViewModel>,val listener: OnSwitchListener
 
             if(itemCard.active)
             {
-                holder.title.setTextColor(ContextCompat.getColor(holder.itemView.context,R.color.white))
-                holder.timp.setTextColor(ContextCompat.getColor(holder.itemView.context,R.color.white))
-                holder.am.setTextColor(ContextCompat.getColor(holder.itemView.context,R.color.white))
+                holder.title.setTextColor(ContextCompat.getColor(holder.itemView.context,
+                    R.color.white
+                ))
+                holder.timp.setTextColor(ContextCompat.getColor(holder.itemView.context,
+                    R.color.white
+                ))
+                holder.am.setTextColor(ContextCompat.getColor(holder.itemView.context,
+                    R.color.white
+                ))
             }
             else
             {
-                holder.title.setTextColor(ContextCompat.getColor(holder.itemView.context,R.color.inactive))
-                holder.timp.setTextColor(ContextCompat.getColor(holder.itemView.context,R.color.inactive))
-                holder.am.setTextColor(ContextCompat.getColor(holder.itemView.context,R.color.inactive))
+                holder.title.setTextColor(ContextCompat.getColor(holder.itemView.context,
+                    R.color.inactive
+                ))
+                holder.timp.setTextColor(ContextCompat.getColor(holder.itemView.context,
+                    R.color.inactive
+                ))
+                holder.am.setTextColor(ContextCompat.getColor(holder.itemView.context,
+                    R.color.inactive
+                ))
             }
 
 

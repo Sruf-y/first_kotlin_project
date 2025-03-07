@@ -1,44 +1,33 @@
 package com.example.myapplication2
 
+import Adaptors.CustomRecyclerView
+import Adaptors.alarmAdapter
+import Classes_Ojects.alarmViewModel
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.media.MediaPlayer
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.os.Parcelable
-import android.provider.Settings
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.activity.OnBackPressedCallback
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity.MODE_PRIVATE
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
-import androidx.recyclerview.widget.RecyclerView.Recycler
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.checkbox.MaterialCheckBox
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import org.w3c.dom.Text
 import java.io.File
 import java.time.LocalDateTime
-import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
-import kotlin.math.min
 
 
 var editingAlarm:Int=-1//which alarm i'm editing
@@ -52,7 +41,8 @@ var alarmDataList = ArrayList<alarmViewModel>();
 var recycleState: Parcelable? =null
 var verticaloffset:Int = 0
 
-open class alarme : Fragment(R.layout.fragment_alarme),alarmAdapter.OnSwitchListener,alarmAdapter.onCardClickListener,alarmAdapter.onCardLongPressListener {
+open class alarme : Fragment(R.layout.fragment_alarme), alarmAdapter.OnSwitchListener, alarmAdapter.onCardClickListener,
+    alarmAdapter.onCardLongPressListener {
 
 
 
@@ -64,7 +54,7 @@ open class alarme : Fragment(R.layout.fragment_alarme),alarmAdapter.OnSwitchList
 
     private lateinit var nextAlarm:TextView
     private lateinit var exactTimeofIt:TextView
-    private lateinit var recycleview:CustomRecyclerView
+    private lateinit var recycleview: CustomRecyclerView
     private lateinit var fablayout:ConstraintLayout
     private lateinit var appbar: AppBarLayout
     private lateinit var coordinator: CoordinatorLayout
@@ -524,11 +514,8 @@ open class alarme : Fragment(R.layout.fragment_alarme),alarmAdapter.OnSwitchList
         recycleview.adapter = adaptor;
 
 
-        alarmDataList.sortWith(compareBy<alarmViewModel> { it.type[10] }.thenBy { it.type[9] }.thenBy { it.type[8] }.thenBy{ ora_am_or_pm(it)}.thenBy { it.minute })
-
-
-
-
+        //sorts the list
+        alarmDataList.sortWith(compareBy<alarmViewModel> { ora_am_or_pm(it)}.thenBy { it.minute })
         recycleview.adapter?.notifyDataSetChanged()
 
 
